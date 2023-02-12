@@ -2,6 +2,7 @@ package com.plantplaces.plantplaces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +20,9 @@ public class PlantPlacesController {
 
 	
 	@RequestMapping(value="/start", method=RequestMethod.GET)
-	public String read(){
+	public String read(Model model ){
 		SpecimenDTO specimenDTO = specimenServiceStub.fetchbyId(43);
+		model.addAttribute("specimenDTO", specimenDTO);
 		return "start";
 	}
 	@RequestMapping(value="/start", method=RequestMethod.GET, params= {"loyalty=blue"})
